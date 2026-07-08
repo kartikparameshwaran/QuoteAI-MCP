@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quoteai-mcp"
+version = "0.1.0"
+description = "Automate email -> quote-JSON -> ERP (Visual ERP) submission via MCP"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.2.0",
+    "anthropic>=0.40.0",
+    "msal>=1.28.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.6.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+browser = ["playwright>=1.44.0"]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+quoteai-mcp = "quoteai_mcp.server:main"
+quoteai-run = "quoteai_mcp.pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
